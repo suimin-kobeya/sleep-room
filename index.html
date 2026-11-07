@@ -284,7 +284,8 @@ footer a{color:var(--night-ink)}
 <script>
 const views={home:"view-home",pillow:"view-pillow",about:"view-about"};
 function route(){
-  const k=(location.hash||"#home").slice(1);
+  const def=document.body.dataset.view||"home";
+  const k=(location.hash||"#"+def).slice(1);
   const key=views[k]?k:"home";
   Object.entries(views).forEach(([n,id])=>{document.getElementById(id).hidden=n!==key});
   document.querySelectorAll("[data-for]").forEach(el=>{el.hidden=el.dataset.for!==key});
