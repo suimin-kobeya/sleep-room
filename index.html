@@ -3,169 +3,243 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="パーソナル睡眠アドバイザーが、枕や寝具の選び方、寝室の環境づくり、寝る前の習慣を紹介する情報サイト。">
 <title>睡眠の小部屋</title>
+<meta name="description" content="パーソナル睡眠アドバイザーが、枕や寝具の選び方、寝室の環境づくり、寝る前の習慣を紹介する情報サイト。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
 <style>
-/* Layout: 夜の寝室のような静かな一段組。読む記事は65字幅、チェックは一枚のカード。 */
+/* Layout: 上部は「夜の小部屋の窓」の帯（常に夜色）。本文は生成りの紙の上に一段組、読みものはカード。 */
 :root{
-  --bg:#f3f1ec;        /* 生成りのシーツ */
-  --paper:#fbfaf7;
-  --ink:#1f2633;       /* 夜の藍墨 */
+  --bg:#f4f1ea;          /* 生成りのシーツ */
+  --paper:#fffdf8;
+  --ink:#1f2633;         /* 藍墨 */
   --muted:#5b6475;
-  --line:#d9d5cc;
-  --lamp:#8a5214;      /* 枕元のランプ */
-  --lamp-soft:#f1e3cf;
-  --night:#2a3346;
+  --line:#e2ddd2;
+  --lamp:#8a5214;        /* 枕元のランプ */
+  --lamp-glow:#f3c77a;
+  --lamp-soft:#f6ead6;
   --pr:#7a3b1d;
+  /* 夜の帯（両テーマ共通で夜） */
+  --night:#18203a;
+  --night-2:#24305a;
+  --night-ink:#efe9dc;
+  --night-muted:#b9bfd6;
   --display:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
   --body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --radius:18px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#151a24;--paper:#1c2230;--ink:#e7e3da;--muted:#a3aab8;--line:#323a4c;
-  --lamp:#e0a35c;--lamp-soft:#3a2f22;--night:#0f131b;--pr:#f0b48a;color-scheme:dark}}
+  --bg:#12172a;--paper:#1a2138;--ink:#ece6da;--muted:#a7aec4;--line:#2c3552;
+  --lamp:#e9b067;--lamp-soft:#2c2a2a;--pr:#f0b48a;color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#151a24;--paper:#1c2230;--ink:#e7e3da;--muted:#a3aab8;--line:#323a4c;
-  --lamp:#e0a35c;--lamp-soft:#3a2f22;--night:#0f131b;--pr:#f0b48a;color-scheme:dark}
+  --bg:#12172a;--paper:#1a2138;--ink:#ece6da;--muted:#a7aec4;--line:#2c3552;
+  --lamp:#e9b067;--lamp-soft:#2c2a2a;--pr:#f0b48a;color-scheme:dark}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.85;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9}
 a{color:var(--lamp)}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--lamp);outline-offset:2px}
-.wrap{max-width:720px;margin:0 auto}
-.prbar{font-size:13px;color:var(--ink);border-bottom:1px solid var(--line);padding-block:8px;letter-spacing:.04em}
-header.site{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;padding-block:20px 8px}
-.logo{font-family:var(--display);font-size:24px;font-weight:700;text-decoration:none;color:var(--ink);letter-spacing:.08em}
-nav{display:flex;gap:16px;flex-wrap:wrap}
-nav a{font-size:14px;color:var(--muted);text-decoration:none}
-nav a:hover{color:var(--lamp)}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.45;font-weight:700}
-h1{font-size:clamp(28px,6vw,40px);margin:24px 0 12px}
-h2{font-size:22px;margin:40px 0 12px}
-h3{font-size:18px;margin:24px 0 8px}
-p{margin:0 0 1em;max-width:38em}
-.lead{color:var(--muted);font-size:17px}
-.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--lamp);font-weight:700}
-.hours{display:flex;gap:6px;align-items:center;font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px;margin-top:8px}
-.hours i{display:inline-block;width:18px;height:6px;border-radius:3px;background:var(--line)}
-.hours i.on{background:var(--lamp)}
-/* check */
-.check{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:24px}
-.q{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:12px;border-top:1px solid var(--line)}
-.q:first-of-type{border-top:0}
-.q span{min-width:0}
-.yn{display:flex;gap:6px;flex-shrink:0}
-.yn button{font:inherit;font-size:14px;min-height:44px;padding:6px 16px;border-radius:999px;border:1px solid var(--muted);background:transparent;color:var(--ink);cursor:pointer}
-.yn button[aria-pressed="true"]{background:var(--lamp);color:var(--paper);border-color:var(--lamp);font-weight:700}
-.cta{display:inline-block;background:var(--lamp);color:var(--paper);font-weight:700;text-decoration:none;border-radius:999px;padding:12px 24px;min-height:44px}
-.cta:hover{filter:brightness(1.08)}
-.result{margin-top:16px;background:var(--lamp-soft);border-radius:10px;padding:16px}
-.result ul{margin:8px 0 0;padding-left:1.2em}
+[tabindex="-1"]:focus{outline:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--lamp-glow);outline-offset:3px;border-radius:6px}
+.gut{padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.wrap{max-width:760px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.45;font-weight:700;letter-spacing:.02em}
+p{margin:0 0 1em}
+
+/* ---- 夜の帯 ---- */
+.night{background:radial-gradient(120% 90% at 85% 10%,var(--night-2),var(--night) 60%);color:var(--night-ink);position:relative;overflow:hidden}
+.night::before{content:"";position:absolute;inset:0;background-image:
+  radial-gradient(1.5px 1.5px at 12% 22%,#fff8 50%,transparent 51%),
+  radial-gradient(1px 1px at 30% 68%,#fff6 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 52% 14%,#fff7 50%,transparent 51%),
+  radial-gradient(1px 1px at 70% 80%,#fff5 50%,transparent 51%),
+  radial-gradient(1.2px 1.2px at 88% 46%,#fff7 50%,transparent 51%),
+  radial-gradient(1px 1px at 6% 86%,#fff5 50%,transparent 51%);pointer-events:none}
+.prbar{font-size:12.5px;color:var(--night-muted);border-bottom:1px solid #ffffff1f;padding-block:8px;letter-spacing:.03em;position:relative}
+header.site{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-block:18px 6px;position:relative}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:22px;font-weight:900;text-decoration:none;color:var(--night-ink);letter-spacing:.12em}
+.logo svg{flex:none}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{font-size:14px;color:var(--night-muted);text-decoration:none;padding-block:6px}
+nav a:hover,nav a[aria-current="page"]{color:var(--night-ink);box-shadow:inset 0 -1px 0 var(--lamp-glow)}
+
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center;padding-block:28px 44px;position:relative}
+.hero>*{min-width:0}
+.eyebrow{font-size:12px;letter-spacing:.2em;font-weight:700;color:var(--lamp)}
+.night .eyebrow{color:var(--lamp-glow)}
+.hero h1{font-size:clamp(30px,6.4vw,46px);margin:10px 0 14px;font-weight:900}
+.hero .lead{color:var(--night-muted);font-size:16px;max-width:30em}
+.window{width:100%;max-width:300px;justify-self:center}
+.window svg{display:block;width:100%;height:auto}
+@media (max-width:640px){.hero{grid-template-columns:1fr;padding-block:18px 36px}.window{max-width:220px;order:-1}}
+@media (prefers-reduced-motion:no-preference){.glow{animation:breathe 6s ease-in-out infinite}}
+@keyframes breathe{0%,100%{opacity:.55}50%{opacity:.9}}
+
+/* ---- 本文 ---- */
+main,article,section.view{padding-block:8px 24px}
+.sec-title{display:flex;align-items:baseline;gap:12px;margin:44px 0 16px}
+.sec-title h2{font-size:24px;margin:0}
+.sec-title span{font-size:12px;letter-spacing:.2em;color:var(--muted)}
+
+.check{position:relative;margin-top:-28px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 18px 40px -24px #18203a55}
+.check h2{font-size:22px;margin:4px 0 8px}
+.check .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chip{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:2px 12px;color:var(--muted);background:var(--bg)}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--night);color:var(--night-ink);font-weight:700;text-decoration:none;border-radius:999px;padding:14px 26px;min-height:48px;box-shadow:0 0 0 0 var(--lamp-glow);transition:box-shadow .2s,transform .2s}
+.cta:hover{transform:translateY(-1px);box-shadow:0 0 0 4px #f3c77a55}
+.cta svg{flex:none}
 .note{font-size:13px;color:var(--muted)}
-/* list */
-.list{display:grid;gap:12px;margin-top:12px}
-.item{display:block;text-decoration:none;color:var(--ink);padding:16px 0;border-top:1px solid var(--line)}
-.item b{font-family:var(--display);font-size:18px;display:block}
-.item small{color:var(--muted)}
-.soon b{color:var(--muted)}
-.result a{color:var(--ink);font-weight:700}
+
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+.card{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-decoration:none;color:var(--ink);transition:transform .2s,border-color .2s}
+a.card:hover{transform:translateY(-2px);border-color:var(--lamp)}
+.card .ic{width:52px;height:52px;border-radius:14px;background:var(--lamp-soft);display:grid;place-items:center;color:var(--lamp)}
+.card .ic svg{width:28px;height:28px}
+.card b{display:block;font-family:var(--display);font-size:18px;line-height:1.5;margin:2px 0 4px}
+.card small{display:block;color:var(--muted);font-size:13.5px;line-height:1.7}
+.card .cat{font-size:11.5px;letter-spacing:.16em;color:var(--lamp);font-weight:700}
+.card.soon{background:transparent;border-style:dashed}
+.card.soon b{color:var(--muted)}
+.badge{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:4px;padding:0 6px;margin-left:6px;color:var(--muted);font-family:var(--body);vertical-align:middle}
+
+/* ---- 記事 ---- */
+.article-head{padding-block:26px 34px;position:relative}
+.article-head h1{font-size:clamp(28px,6vw,40px);margin:8px 0 10px;font-weight:900}
+.article-head .lead{color:var(--night-muted);margin:0}
+.articlepr{display:inline-block;font-size:13px;font-weight:700;color:var(--night);background:var(--lamp-glow);border-radius:4px;padding:1px 8px;margin-bottom:10px}
+.prose{max-width:38em}
+.prose h2{font-size:22px;margin:40px 0 10px;padding-left:14px;border-left:3px solid var(--lamp)}
+.figure{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:18px 0}
 .figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
 .figs div{min-width:0;text-align:center}
-.figs p{font-size:14px;margin:4px 0 0;max-width:none}
-.f-bed{fill:var(--line)}.f-pil{fill:var(--lamp-soft);stroke:var(--lamp)}.f-head{fill:var(--paper);stroke:var(--ink)}.f-spine{stroke:var(--ink);stroke-width:3;fill:none}.f-guide{stroke:var(--lamp);stroke-dasharray:4 4;fill:none}
-.articlepr{font-size:14px;color:var(--pr);font-weight:700;margin-bottom:4px}
-/* article */
-.figure{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto}
+.figs p{font-size:14px;margin:4px 0 0}
+.figs .ok p{font-weight:700;color:var(--lamp)}
 .figure svg{display:block;max-width:100%;height:auto}
-.figure figcaption{font-size:13px;color:var(--muted);margin-top:8px}
-.term{font-size:12px;color:var(--muted);letter-spacing:.06em;margin-left:6px}
-ol.steps{padding-left:1.4em}
-ol.steps li{margin-bottom:.6em}
-.product{border:1px dashed var(--line);border-radius:14px;padding:16px;margin-top:16px}
+.figure figcaption{font-size:13px;color:var(--muted);margin-top:10px}
+.f-bed{fill:var(--line)}.f-pil{fill:var(--lamp-soft);stroke:var(--lamp)}.f-head{fill:var(--paper);stroke:var(--ink)}.f-spine{stroke:var(--ink);stroke-width:3;fill:none}
+ol.steps{list-style:none;padding:0;counter-reset:s;display:grid;gap:10px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start}
+ol.steps li::before{content:counter(s);width:30px;height:30px;border-radius:50%;background:var(--night);color:var(--night-ink);display:grid;place-items:center;font-size:14px;font-weight:700;margin-top:2px}
+.product{border:1px dashed var(--lamp);border-radius:var(--radius);padding:18px;margin-top:22px;background:var(--lamp-soft)}
 .prtag{display:inline-block;font-size:12px;font-weight:700;color:var(--pr);border:1px solid var(--pr);border-radius:4px;padding:0 6px;margin-right:8px}
-.caution{border-left:3px solid var(--lamp);padding-left:12px;font-size:14px;color:var(--muted);margin-top:32px}
-footer{margin-top:56px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--muted)}
-footer h3{font-size:15px;color:var(--ink)}
-@media (prefers-reduced-motion:no-preference){.result{animation:fade .3s ease}}
-@keyframes fade{from{opacity:.4}to{opacity:1}}
+.caution{border-left:3px solid var(--line);padding-left:14px;font-size:14px;color:var(--muted);margin-top:34px}
+.about h1{font-size:30px}
+.about h2{font-size:19px;margin:32px 0 6px}
+
+/* ---- フッター ---- */
+footer{margin-top:64px;background:var(--night);color:var(--night-muted);font-size:13px}
+footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer b{font-family:var(--display);color:var(--night-ink);font-size:16px;letter-spacing:.1em}
+footer a{color:var(--night-ink)}
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <div class="prbar">当サイトはアフィリエイト広告（楽天アフィリエイト）を利用しています。紹介リンクには「PR」と表示しています。</div>
-  <header class="site">
-    <a class="logo" href="#home">睡眠の小部屋</a>
-    <nav><a href="#home">トップ</a><a href="#pillow">枕の選び方</a><a href="#about">運営・方針</a></nav>
-  </header>
+<div class="night">
+  <div class="gut"><div class="wrap">
+    <div class="prbar">当サイトはアフィリエイト広告（楽天アフィリエイト）を利用しています。紹介リンクには「PR」と表示しています。</div>
+    <header class="site">
+      <a class="logo" href="#home" aria-label="睡眠の小部屋 トップへ">
+        <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="3" y="4" width="24" height="23" rx="11" fill="none" stroke="#f3c77a" stroke-width="1.6"/><path d="M15 4v23M3 16h24" stroke="#f3c77a" stroke-width="1" opacity=".6"/><path d="M21.5 9.5a3.4 3.4 0 1 1-3-1.8 2.6 2.6 0 0 0 3 1.8z" fill="#f3c77a"/></svg>
+        睡眠の小部屋
+      </a>
+      <nav aria-label="メニュー"><a href="#home">トップ</a><a href="#pillow">枕の選び方</a><a href="#about">運営・方針</a></nav>
+    </header>
+
+    <div class="hero" data-for="home">
+      <div>
+        <p class="eyebrow">眠る前の環境と習慣を、ひとつずつ</p>
+        <h1>今夜の寝室を、<br>少しだけ整える。</h1>
+        <p class="lead">寝具の選び方、寝室の明るさや温度、寝る前の過ごし方。パーソナル睡眠アドバイザーが、毎日の眠る前の過ごし方を見直すための情報をまとめています。</p>
+      </div>
+      <div class="window" aria-hidden="true">
+        <svg viewBox="0 0 240 260">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d3b6e"/><stop offset="1" stop-color="#121a33"/></linearGradient>
+            <radialGradient id="lampg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f3c77a" stop-opacity=".9"/><stop offset="1" stop-color="#f3c77a" stop-opacity="0"/></radialGradient>
+          </defs>
+          <path d="M40 240V110a80 80 0 0 1 160 0v130z" fill="url(#sky)" stroke="#f3c77a" stroke-opacity=".5" stroke-width="2"/>
+          <circle cx="150" cy="90" r="22" fill="#f6e3b8"/><circle cx="160" cy="84" r="20" fill="#26335f"/>
+          <circle cx="80" cy="80" r="1.6" fill="#fff"/><circle cx="110" cy="140" r="1.2" fill="#fff" opacity=".8"/><circle cx="170" cy="150" r="1.4" fill="#fff" opacity=".7"/><circle cx="95" cy="110" r="1" fill="#fff" opacity=".7"/>
+          <path d="M120 30v210M40 160h160" stroke="#f3c77a" stroke-opacity=".35" stroke-width="2"/>
+          <path d="M40 240V110a80 80 0 0 1 22-55c6 60 2 130-22 185z" fill="#3a2d4a" opacity=".85"/>
+          <path d="M200 240V110a80 80 0 0 0-22-55c-6 60-2 130 22 185z" fill="#3a2d4a" opacity=".85"/>
+          <rect x="22" y="238" width="196" height="10" rx="4" fill="#3b3048"/>
+          <circle class="glow" cx="196" cy="218" r="38" fill="url(#lampg)"/>
+          <path d="M188 210h16l-4-14h-8z" fill="#f3c77a"/><rect x="194" y="210" width="4" height="26" fill="#c9a15a"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="article-head" data-for="pillow" hidden>
+      <span class="articlepr">【PR】この記事には楽天アフィリエイトの紹介リンクが含まれます</span>
+      <p class="eyebrow">寝具 ／ パーソナル睡眠アドバイザーが選び方を解説</p>
+      <h1>枕は「高さ」で選ぶ</h1>
+      <p class="lead">素材や価格より先に、まず高さ。仰向けで寝るか、横向きで寝るかで、見るポイントが変わります。</p>
+    </div>
+
+    <div class="article-head" data-for="about" hidden>
+      <p class="eyebrow">ABOUT</p>
+      <h1>運営・方針</h1>
+      <p class="lead">誰が、どんな考えでこのサイトを書いているか。</p>
+    </div>
+  </div></div>
+</div>
+
+<div class="gut"><div class="wrap">
 
   <main id="view-home">
-    <p class="eyebrow">眠る前の環境と習慣を、ひとつずつ</p>
-    <h1>今夜の寝室を、<br>少しだけ整える。</h1>
-    <p class="lead">寝具の選び方、寝室の明るさや温度、寝る前の過ごし方。パーソナル睡眠アドバイザーが、毎日の眠る前の過ごし方を見直すための情報をまとめています。</p>
-
     <section class="check" aria-labelledby="chk">
-      <h2 id="chk" style="margin-top:0">睡眠チェック（約5分・52問）</h2>
-      <p>「はい／いいえ」で答えるだけで、睡眠に関わる5つの習慣を振り返れます。結果は報告書の形で受け取れます。</p>
-      <p><a class="cta" href="https://sleep-check-pi.vercel.app/c/sleep-fnviko" target="_blank" rel="noopener">睡眠チェックをはじめる</a></p>
+      <p class="eyebrow">SLEEP CHECK</p>
+      <h2 id="chk">まずは、今の睡眠を振り返る</h2>
+      <div class="meta"><span class="chip">約5分</span><span class="chip">52問</span><span class="chip">はい／いいえで回答</span></div>
+      <p>睡眠に関わる5つの習慣を振り返れます。結果は報告書の形で受け取れます。</p>
+      <p><a class="cta" href="https://sleep-check-pi.vercel.app/c/sleep-fnviko" target="_blank" rel="noopener">睡眠チェックをはじめる
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9h10M10 5l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
       <p class="note">外部のページが開きます。生活習慣を振り返るためのもので、医療機関での診察の代わりにはなりません。眠れない状態が続く、日中に強い眠気がある、いびきや睡眠中の呼吸の停止を指摘されたなどの場合は、医療機関に相談してください。</p>
     </section>
 
-    <h2>読みもの</h2>
-    <div class="list">
-      <a class="item" href="#pillow"><span class="eyebrow">寝具</span><b>枕は「高さ」で選ぶ</b><small>仰向け・横向き、寝姿勢別のチェックポイント</small></a>
-      <div class="item soon"><span class="eyebrow">寝室の環境</span><b>冬の寝室、乾燥してない？</b><small>準備中</small></div>
-      <div class="item soon"><span class="eyebrow">習慣</span><b>寝る前のスマホ、置き場所を変える</b><small>準備中</small></div>
-      <div class="item soon"><span class="eyebrow">旅先</span><b>旅先・帰省の明るさ対策</b><small>準備中</small></div>
+    <div class="sec-title"><h2>読みもの</h2><span>READING</span></div>
+    <div class="cards">
+      <a class="card" href="#pillow">
+        <span class="ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 11c0-3 3-4 10-4s10 1 10 4v6c0 3-3 4-10 4s-10-1-10-4z"/><path d="M8 14c3 1 9 1 12 0" stroke-linecap="round"/></svg></span>
+        <span><span class="cat">寝具</span><b>枕は「高さ」で選ぶ</b><small>仰向け・横向き、寝姿勢別のチェックポイント</small></span>
+      </a>
+      <div class="card soon">
+        <span class="ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4c4 6 7 9 7 13a7 7 0 0 1-14 0c0-4 3-7 7-13z"/></svg></span>
+        <span><span class="cat">寝室の環境</span><b>冬の寝室、乾燥してない？<span class="badge">準備中</span></b><small>温度と湿度を見える化する</small></span>
+      </div>
+      <div class="card soon">
+        <span class="ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="3" width="12" height="22" rx="3"/><path d="M12 21h4" stroke-linecap="round"/></svg></span>
+        <span><span class="cat">習慣</span><b>寝る前のスマホ、置き場所を変える<span class="badge">準備中</span></b><small>ベッドから離すだけの小さな工夫</small></span>
+      </div>
+      <div class="card soon">
+        <span class="ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="5" y="9" width="18" height="14" rx="3"/><path d="M10 9V6h8v3M5 15h18"/></svg></span>
+        <span><span class="cat">旅先</span><b>旅先・帰省の明るさ対策<span class="badge">準備中</span></b><small>移動中や旅先の部屋で使えるもの</small></span>
+      </div>
     </div>
   </main>
 
-  <article id="view-pillow" hidden>
-    <p class="articlepr">【PR】この記事には楽天アフィリエイトの紹介リンクが含まれます。</p>
-    <p class="eyebrow">寝具 ／ パーソナル睡眠アドバイザーが選び方を解説</p>
-    <h1>枕は「高さ」で選ぶ</h1>
-    <p class="lead">素材や価格より先に、まず高さ。仰向けで寝るか、横向きで寝るかで、見るポイントが変わります。</p>
-
+  <article id="view-pillow" class="prose" hidden>
     <h2>枕の役割は、寝ている姿勢を支えること</h2>
     <p>立っているとき、頭から首、背中はゆるやかなカーブを描いて並んでいます。横になると、仰向けでは首の後ろに、横向きでは肩の幅のぶん頭の横に、すき間ができます。枕はそのすき間を埋めて、起きているときに近い並びのまま横になれるよう支える道具です。</p>
-
     <h2>仰向けで寝る人</h2>
     <p>首の後ろのすき間が自然に埋まり、あごを軽く引いたくらいの角度になるのが目安です。あごが上がって天井を見上げる形なら低すぎ、あごが引けて喉がつまる感じなら高すぎの可能性があります。</p>
-
     <h2>横向きで寝る人</h2>
     <p>横向きでは肩の幅のぶん、仰向けより高さが必要になります。頭のてっぺんから首、背骨までが、ほぼ一直線に並ぶ高さを探します。自分では見えないので、家族に後ろから見てもらうか、スマホで撮ってみると分かりやすいです。</p>
-
     <figure class="figure">
       <div class="figs">
-        <div><svg viewBox="0 0 200 150" role="img" aria-label="低い：頭が下がる">
-          <rect class="f-bed" x="10" y="110" width="180" height="34" rx="8"/>
-          <rect class="f-pil" x="20" y="96" width="50" height="14" rx="6"/>
-          <circle class="f-head" cx="45" cy="78" r="18"/>
-          <path class="f-spine" d="M63 86 L185 74"/>
-        </svg><p>低い：頭が下がる</p></div>
-        <div><svg viewBox="0 0 200 150" role="img" aria-label="合っている：一直線">
-          <rect class="f-bed" x="10" y="110" width="180" height="34" rx="8"/>
-          <rect class="f-pil" x="20" y="84" width="50" height="26" rx="6"/>
-          <circle class="f-head" cx="45" cy="66" r="18"/>
-          <path class="f-spine" d="M63 72 L185 72"/>
-        </svg><p>合っている：一直線</p></div>
-        <div><svg viewBox="0 0 200 150" role="img" aria-label="高い：頭が上がる">
-          <rect class="f-bed" x="10" y="110" width="180" height="34" rx="8"/>
-          <rect class="f-pil" x="20" y="68" width="50" height="42" rx="6"/>
-          <circle class="f-head" cx="45" cy="50" r="18"/>
-          <path class="f-spine" d="M63 58 L185 76"/>
-        </svg><p>高い：頭が上がる</p></div>
+        <div><svg viewBox="0 0 200 150" role="img" aria-label="低い：頭が下がる"><rect class="f-bed" x="10" y="110" width="180" height="34" rx="8"/><rect class="f-pil" x="20" y="96" width="50" height="14" rx="6"/><circle class="f-head" cx="45" cy="78" r="18"/><path class="f-spine" d="M63 86 L185 74"/></svg><p>低い：頭が下がる</p></div>
+        <div class="ok"><svg viewBox="0 0 200 150" role="img" aria-label="合っている：一直線"><rect class="f-bed" x="10" y="110" width="180" height="34" rx="8"/><rect class="f-pil" x="20" y="84" width="50" height="26" rx="6"/><circle class="f-head" cx="45" cy="66" r="18"/><path class="f-spine" d="M63 72 L185 72"/></svg><p>合っている：一直線</p></div>
+        <div><svg viewBox="0 0 200 150" role="img" aria-label="高い：頭が上がる"><rect class="f-bed" x="10" y="110" width="180" height="34" rx="8"/><rect class="f-pil" x="20" y="68" width="50" height="42" rx="6"/><circle class="f-head" cx="45" cy="50" r="18"/><path class="f-spine" d="M63 58 L185 76"/></svg><p>高い：頭が上がる</p></div>
       </div>
       <figcaption>横向きのときの見え方（模式図）。線が背骨、円が頭です。</figcaption>
     </figure>
-
     <h2>マットレスの硬さでも、合う高さは変わる</h2>
     <p>やわらかいマットレスは体が沈むぶん、枕は低めが合いやすくなります。硬いマットレスでは体が沈まないので、やや高めが合うことがあります。枕だけを替えて合わないと感じたら、寝具との組み合わせも見直してみてください。</p>
-
     <h2>買う前に、タオルで試す</h2>
     <ol class="steps">
       <li>今の枕の上か、枕の代わりに、たたんだバスタオルを置く。</li>
@@ -175,17 +249,14 @@ footer h3{font-size:15px;color:var(--ink)}
       <li>その高さに近い枕、または高さを調整できる枕を選ぶ。</li>
     </ol>
     <p>仰向けと横向きを行き来する人は、中央が低く両端が高い形や、中材を出し入れして高さを変えられる枕も選択肢です。寝返りを打っても頭が落ちないよう、幅にも余裕があるものが向いています。</p>
-
     <section class="product" aria-label="商品紹介">
       <p><span class="prtag">PR</span><b>高さを調整できる枕（楽天の人気商品から）</b></p>
-      <p class="note">紹介する商品は、楽天市場の売れ筋とレビュー件数を確認日とあわせて記載します。※試作のため商品リンクは準備中です。</p>
+      <p class="note" style="margin:0">紹介する商品は、楽天市場の売れ筋とレビュー件数を確認日とあわせて記載します。※商品リンクは準備中です。</p>
     </section>
-
     <p class="caution">首や肩に痛み・しびれがある、朝起きると強くこわばるなどの場合は、枕を替える前に医療機関に相談してください。このページは寝具選びの一般的な情報で、症状の改善を目的としたものではありません。</p>
   </article>
 
-  <section id="view-about" hidden>
-    <h1>運営・方針</h1>
+  <section id="view-about" class="view prose about" hidden>
     <h2>運営</h2>
     <p>「とまり」が個人で運営しています（鹿児島県・沖永良部島）。記事はパーソナル睡眠アドバイザー（民間資格）として執筆しています。</p>
     <h2>広告と紹介について</h2>
@@ -193,18 +264,21 @@ footer h3{font-size:15px;color:var(--ink)}
     <h2>表現について</h2>
     <p>寝具や雑貨で、病気の予防や治療、症状の改善をうたう紹介はしません。サプリメントや医薬品は扱いません。</p>
     <h2>お問い合わせ</h2>
-    <p class="note">お問い合わせ先は公開時に掲載します。</p>
+    <p class="note">お問い合わせ先は準備中です。</p>
     <h2>プライバシーポリシー</h2>
-    <p class="note">公開時に掲載します。紹介リンクでは、楽天アフィリエイトの仕組みによりCookieなどが使われる場合があります。</p>
+    <p class="note">紹介リンクでは、楽天アフィリエイトの仕組みによりCookieなどが使われる場合があります。詳しい内容は準備中です。</p>
     <h2>特定商取引法に基づく表示</h2>
     <p class="note">当サイトで直接販売を始める際に掲載します（現在は直接販売を行っていません）。</p>
   </section>
 
-  <footer>
-    <h3>睡眠の小部屋</h3>
-    <p>運営：とまり（個人運営） ／ 当サイトは楽天アフィリエイトを利用しています。 <a href="#about">運営・方針</a></p>
-  </footer>
-</div>
+</div></div>
+
+<footer>
+  <div class="gut"><div class="wrap">
+    <b>睡眠の小部屋</b>
+    <span>運営：とまり（個人運営） ／ 楽天アフィリエイトを利用しています ／ <a href="#about">運営・方針</a></span>
+  </div></div>
+</footer>
 
 <script>
 const views={home:"view-home",pillow:"view-pillow",about:"view-about"};
@@ -212,13 +286,13 @@ function route(){
   const k=(location.hash||"#home").slice(1);
   const key=views[k]?k:"home";
   Object.entries(views).forEach(([n,id])=>{document.getElementById(id).hidden=n!==key});
+  document.querySelectorAll("[data-for]").forEach(el=>{el.hidden=el.dataset.for!==key});
+  document.querySelectorAll("nav a").forEach(a=>{a.toggleAttribute("aria-current",a.getAttribute("href")==="#"+key);if(a.hasAttribute("aria-current"))a.setAttribute("aria-current","page")});
   window.scrollTo(0,0);
-  const h=document.getElementById(views[key]).querySelector("h1");
+  const h=document.querySelector('[data-for="'+key+'"] h1');
   if(h&&location.hash){h.tabIndex=-1;h.focus({preventScroll:true})}
 }
 addEventListener("hashchange",route);route();
-
 </script>
-
 </body>
 </html>
