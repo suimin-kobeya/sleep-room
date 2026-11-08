@@ -19,6 +19,11 @@ for fn, view, title, desc, img in PAGES:
     s = re.sub(r'<meta name="description" content=".*?">',
                f'<link rel="canonical" href="{BASE}{fn}">\n<meta property="og:title" content="{title}">\n'
                f'<meta property="og:image" content="{BASE}{img}">\n<meta name="description" content="{desc}">', s, 1)
+    # 他の記事の商品枠（アフィリエイトリンク）はこのページに残さない
+    def keep(m):
+        return m.group(0) if m.group(1) == f"view-{view}" else ""
+    s = re.sub(r'(?s)(?<=<article id=")(view-[a-z-]+)(.*?)(\n    <section class="product".*?</section>)',
+               lambda m: m.group(1)+m.group(2)+(m.group(3) if m.group(1)==f"view-{view}" else ""), s)
     s = s.replace("<body>", f'<body data-view="{view}">', 1)
     open(fn, "w", encoding="utf-8").write(s)
     print(fn)
