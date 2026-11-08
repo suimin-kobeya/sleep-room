@@ -13,7 +13,12 @@ NIGHT_TOP, NIGHT_BOT = (45, 59, 110), (18, 24, 46)
 INK, MUTED, GLOW, PAPER = (239, 233, 220), (185, 191, 214), (243, 199, 122), (246, 227, 184)
 
 
+FALLBACK = "/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf"  # Noto CJKが無い環境用
+
+
 def font(path, size):
+    if not os.path.exists(path):
+        path = FALLBACK
     return ImageFont.truetype(path, size, index=0)  # index 0 = 日本語(JP)
 
 
@@ -29,7 +34,8 @@ def make(slug, line1, line2, sub, cat):
         t = y / H
         c = tuple(int(NIGHT_TOP[i] * (1 - t) + NIGHT_BOT[i] * t) for i in range(3))
         d.line([(0, y), (W, y)], fill=c)
-    for (x, y, r) in [(120, 200, 3), (300, 520, 2), (820, 380, 3), (700, 640, 2), (90, 760, 2), (900, 860, 3), (520, 300, 2)]:
+    # 星は画像の下半分（見出しと重ならない位置）に置く
+    for (x, y, r) in [(110, 880, 3), (300, 960, 2), (190, 1060, 3), (420, 1120, 2), (90, 1200, 2), (380, 800, 2), (950, 1050, 3)]:
         d.ellipse([x - r, y - r, x + r, y + r], fill=(255, 255, 255))
 
     # 窓（アーチ）と月：下半分に配置して見出しと重ならないようにする
