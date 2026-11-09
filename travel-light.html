@@ -127,6 +127,9 @@ a.card:hover{transform:translateY(-2px);border-color:var(--lamp)}
 ol.steps{list-style:none;padding:0;counter-reset:s;display:grid;gap:10px}
 ol.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start}
 ol.steps li::before{content:counter(s);width:30px;height:30px;border-radius:50%;background:var(--night);color:var(--night-ink);display:grid;place-items:center;font-size:14px;font-weight:700;margin-top:2px}
+.shopbox{border:1px solid var(--line,rgba(127,127,127,.35));border-radius:var(--radius);padding:18px;margin-top:22px}
+.shopbox .owntag{display:inline-block;font-size:12px;border:1px solid currentColor;border-radius:4px;padding:1px 6px;margin-right:8px}
+.shopbox .shopbtn{display:inline-block;margin-top:6px;padding:10px 16px;border-radius:999px;border:1px solid currentColor;text-decoration:none;font-weight:600}
 .product{border:1px dashed var(--lamp);border-radius:var(--radius);padding:18px;margin-top:22px;background:var(--lamp-soft)}
 .prtag{display:inline-block;font-size:12px;font-weight:700;color:var(--pr);border:1px solid var(--pr);border-radius:4px;padding:0 6px;margin-right:8px}
 ul.plist{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:12px}
@@ -270,6 +273,12 @@ footer a{color:var(--night-ink)}
       <li>その高さに近い枕、または高さを調整できる枕を選ぶ。</li>
     </ol>
     <p>仰向けと横向きを行き来する人は、中央が低く両端が高い形や、中材を出し入れして高さを変えられる枕も選択肢です。寝返りを打っても頭が落ちないよう、幅にも余裕があるものが向いています。</p>
+    <section class="shopbox" aria-label="運営者の販売商品">
+      <p><span class="owntag">運営者の販売商品</span><b>高さと硬さを選べる枕「ととのうピロー」</b></p>
+      <p>当サイトの運営者（とまり）が、オンラインショップ「睡眠の小部屋 ショップ」で販売している枕です。上の楽天の紹介リンクとは別の商品で、売れると運営者の売上になります。高さ（9cm／13cm）と硬さ（ソフト／ハード）の組み合わせから選べる日本製の枕です（買ったあとに高さを調整するタイプではなく、2種類の高さから選ぶタイプです）。</p>
+      <p class="note" style="margin:8px 0">価格・発送の目安・キャンセルと返品の条件は、ショップの商品ページと「特定商取引法に基づく表記」で確認してください（注文後のキャンセルと、お客さま都合の返品はお受けしていません）。使い心地には個人差があります。</p>
+      <a class="shopbtn" href="https://suimin-kobeya-shop.square.site/" target="_blank" rel="noopener">ショップで見る</a>
+    </section>
     <p class="caution">首や肩に痛み・しびれがある、朝起きると強くこわばるなどの場合は、枕を替える前に医療機関に相談してください。このページは寝具選びの一般的な情報で、症状の改善を目的としたものではありません。</p>
   </article>
 
@@ -348,14 +357,15 @@ footer a{color:var(--night-ink)}
     <p>「とまり」が個人で運営しています（鹿児島県・沖永良部島）。記事はパーソナル睡眠アドバイザー（民間資格）として執筆しています。</p>
     <h2>広告と紹介について</h2>
     <p>当サイトは楽天アフィリエイトを利用しており、紹介リンクから商品が購入されると当サイトに報酬が入ります。紹介リンクのある箇所には「PR」と表示します。報酬の有無によって記事の評価を変えることはありません。</p>
+    <p>また、運営者が自分で販売している商品（枕など）も紹介しています。その箇所には「運営者の販売商品」と表示し、楽天の紹介リンクと区別しています。</p>
     <h2>表現について</h2>
     <p>寝具や雑貨で、病気の予防や治療、症状の改善をうたう紹介はしません。サプリメントや医薬品は扱いません。</p>
     <h2>お問い合わせ</h2>
-    <p class="note">お問い合わせ先は準備中です。</p>
+    <p>ショップの商品に関するお問い合わせ：<a href="mailto:nemulia.sleep@gmail.com">nemulia.sleep@gmail.com</a></p>
     <h2>プライバシーポリシー</h2>
     <p class="note">紹介リンクでは、楽天アフィリエイトの仕組みによりCookieなどが使われる場合があります。詳しい内容は準備中です。</p>
-    <h2>特定商取引法に基づく表示</h2>
-    <p class="note">当サイトで直接販売を始める際に掲載します（現在は直接販売を行っていません）。</p>
+    <h2>特定商取引法に基づく表記</h2>
+    <p>運営者が販売する商品は「睡眠の小部屋 ショップ」（Squareのオンラインストア）で販売しており、特定商取引法に基づく表記はショップ内に掲載しています。<a href="https://suimin-kobeya-shop.square.site/" target="_blank" rel="noopener">ショップを開く</a></p>
   </section>
 
 </div></div>
@@ -363,7 +373,7 @@ footer a{color:var(--night-ink)}
 <footer>
   <div class="gut"><div class="wrap">
     <b>睡眠の小部屋</b>
-    <span>運営：とまり（個人運営） ／ 楽天アフィリエイトを利用しています ／ <a href="#about">運営・方針</a></span>
+    <span>運営：とまり（個人運営） ／ 楽天アフィリエイトを利用しています ／ <a href="https://suimin-kobeya-shop.square.site/" target="_blank" rel="noopener">ショップ</a> ／ <a href="#about">運営・方針</a></span>
   </div></div>
 </footer>
 
