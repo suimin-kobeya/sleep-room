@@ -14,6 +14,9 @@ PAGES = [
     ("travel-light.html", "travel-light", "旅先・帰省の部屋、明るさを整える｜睡眠の小部屋",
      "【PR】旅先や帰省先の部屋は、光の入り方がいつもと違います。到着後の光の入り口の探し方と、アイマスクを選ぶときのチェックポイントをパーソナル睡眠アドバイザーが解説します。",
      "pins/travel-1.png"),
+    ("topper-air.html", "topper-air", "寝床の暑さ・寒さ、送風できるトッパーという選択肢｜睡眠の小部屋",
+     "【PR】今の寝具に重ねて、風を通したり温めたりできるトッパー。選ぶ前に確かめたいサイズ・電源・音・手入れ・電気代のポイントをパーソナル睡眠アドバイザーが解説します。",
+     "pins/topper-1.png"),
 ]
 src = open("index.html", encoding="utf-8").read()
 for fn, view, title, desc, img in PAGES:
