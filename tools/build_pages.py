@@ -17,6 +17,9 @@ PAGES = [
     ("topper-air.html", "topper-air", "寝床の暑さ・寒さ、送風できるトッパーという選択肢｜睡眠の小部屋",
      "【PR】今の寝具に重ねて、風を通したり温めたりできるトッパー。選ぶ前に確かめたいサイズ・電源・音・手入れ・電気代のポイントをパーソナル睡眠アドバイザーが解説します。",
      "pins/topper-1.png"),
+    ("blanket-material.html", "blanket-material", "毛布と敷きパッド、素材で選ぶ｜睡眠の小部屋",
+     "【PR】毛布や敷きパッドは、タグの素材を見ると選びやすくなります。綿・ウール・化学繊維のちがい、洗濯表示の見方、掛け布団との重ね方をパーソナル睡眠アドバイザーが解説します。",
+     "pins/blanket-1.png"),
 ]
 src = open("index.html", encoding="utf-8").read()
 for fn, view, title, desc, img in PAGES:
